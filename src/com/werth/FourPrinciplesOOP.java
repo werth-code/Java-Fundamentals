@@ -9,7 +9,19 @@ public class FourPrinciplesOOP implements AbstractionExample {
 
     public FourPrinciplesOOP(String name) {
         this.name = name;
+    }
+
+    public FourPrinciplesOOP() {
         this.names = new ArrayList<>();
+        this.names.add("Hope");
+        this.names.add("Mike");
+        this.names.add("Trish");
+    }
+
+    @Override
+    public void speak() {
+        if(this.name == null) System.out.println(names.get(0) + " Say's Hello!");
+        else System.out.println(this.name + " Say's Hello!");
     }
 
     //Abstraction
