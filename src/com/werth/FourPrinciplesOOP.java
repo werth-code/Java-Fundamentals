@@ -24,13 +24,16 @@ public class FourPrinciplesOOP implements AbstractionExample {
         else System.out.println(this.name + " Say's Hello!");
     }
 
+    public List<String> getNames() {
+        return names;
+    }
+
     //Abstraction
     /*
     An example would be the Java Collections Framework. It provides us with data structures and methods
     which we can invoke on the contents of those structures - we can create an ArrayList with a single line
     of code because the mechanics and implementation has been hidden within many classes and interfaces.
      */
-
 
 
     //Polymorphism
@@ -41,6 +44,9 @@ public class FourPrinciplesOOP implements AbstractionExample {
     */
 
     //Inheritance
+    /*
+
+    */
 
     //Encapsulation
 
