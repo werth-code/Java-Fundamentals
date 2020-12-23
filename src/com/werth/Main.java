@@ -1,7 +1,7 @@
 package com.werth;
 
 import solid.ChildrensBook;
-import solid.Read;
+import solid.Ebook;
 
 public class Main {
 
@@ -65,11 +65,24 @@ public class Main {
         ChildrensBook book = new ChildrensBook("Snakes for Kids: A Junior Scientist's Guide to Venom, Scales, and Life in the Wild", "Take an amazing journey into the wonderful world of snakes―fangs, rattles, and scales!\n",
                  "Michael G. Starkey");
         System.out.println("- We Created A Class For Book, ChildrensBook and a static Read method. Here we separated read() from Book so that it can take any type of Book.");
-        Read.read(book);
+        book.read();
 
         System.out.println("---Open/Closed---");
         System.out.println("- Let's say we finished our Book class and have a working program. Now we want to add an 'hasEbook' variable.\n" +
-                "instead of adding to our existing class - we should make a new implementation that extends our book class.");
+                "instead of adding to our existing class - we should make a new implementation that extends our book class.\nClasses should be open for extension but closed for modification");
+
+        Ebook ebook = new Ebook("Hello World", "A book about my journey through the world.", "Amanda Michaels");
+        System.out.println("- Is this an Ebook? " + ebook.getHasEbook());
+        ebook.read();
+
+        System.out.println("\n---Liscov Substitution---");
+        System.out.println("If class A is a subtype of class B, then we should be able to replace B with A without disrupting the behavior of our program.");
+        System.out.println("Here we can call the getAuthor() from Ebook and Childrens Book because they are subtypes of Book");
+        System.out.println(book.getAuthor() + " --- " + ebook.getAuthor());
+
+        System.out.println("\n---Interface Segregation---");
+        System.out.println("We should make multiple small interfaces instead of one large interface. This way, classes only need to implement necessary methods");
+
 
     }
 

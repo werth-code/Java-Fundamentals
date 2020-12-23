@@ -8,7 +8,7 @@ This way, we can create other types of books and all functionality will be integ
 @Override methods and alter code.
 */
 
-public class Book  {
+public class Book implements Readable {
     String bookName;
     String bookText;
     String author;
@@ -49,4 +49,9 @@ public class Book  {
     }
 
 
+    @Override
+    public void read() {
+        System.out.println(this.getBookName() + " by " + this.getAuthor() + "\n"
+                + this.getBookText());
+    }
 }
