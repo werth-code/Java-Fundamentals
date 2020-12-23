@@ -8,7 +8,12 @@ This way, we can create other types of books and all functionality will be integ
 @Override methods and alter code.
 */
 
-public class Book implements Readable {
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Book implements Readable, Words {
     String bookName;
     String bookText;
     String author;
@@ -53,5 +58,21 @@ public class Book implements Readable {
     public void read() {
         System.out.println(this.getBookName() + " by " + this.getAuthor() + "\n"
                 + this.getBookText());
+    }
+
+    @Override
+    public Long countWords() {
+        String[] words = this.bookText.split("\\W+");
+        return Stream.of(words).collect(Collectors.counting());
+    }
+
+    @Override
+    public Map<String, Long> wordUse() {
+        String[] words = this.bookText.split("\\W+");
+        return Stream.of(words)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.counting()
+                ));
     }
 }

@@ -81,8 +81,14 @@ public class Main {
         System.out.println(book.getAuthor() + " --- " + ebook.getAuthor());
 
         System.out.println("\n---Interface Segregation---");
-        System.out.println("We should make multiple small interfaces instead of one large interface. This way, classes only need to implement necessary methods");
+        System.out.println("We should make multiple small interfaces instead of one large interface. This way our classes only need to implement necessary methods");
+        System.out.println("...Combining Multiple Smaller Interfaces...");
+        System.out.println("'" + book.getBookName() + "'" +  " contains " + book.countWords() + " words.");
+        System.out.println("Words Used " + book.wordUse().toString());
 
+
+        System.out.println("\n---Dependency Inversion---");
+        System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use implements over extends");
 
     }
 
