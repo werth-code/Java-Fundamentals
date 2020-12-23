@@ -4,13 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FourPrinciplesOOP implements AbstractionExample {
+
+    //Encapsulation
     private String name;
     private List<String> names;
+
+
+    //Polymorphism
+    /*
+    An example would be method overloading, where you have two methods which accept different parameters. Also method
+    @Override when you override an existing method - the ability of your code to change depending on the context in which
+    it is being used.
+    */
 
     public FourPrinciplesOOP(String name) {
         this.name = name;
     }
 
+    //Overloaded the constructor function - STATIC handled in the compiler.
     public FourPrinciplesOOP() {
         this.names = new ArrayList<>();
         this.names.add("Hope");
@@ -34,21 +45,6 @@ public class FourPrinciplesOOP implements AbstractionExample {
     which we can invoke on the contents of those structures - we can create an ArrayList with a single line
     of code because the mechanics and implementation has been hidden within many classes and interfaces.
      */
-
-
-    //Polymorphism
-    /*
-    An example would be method overloading, where you have two methods which accept different parameters. Also method
-    @Override when you override an existing method - the ability of your code to change depending on the context in which
-    it is being used.
-    */
-
-    //Inheritance
-    /*
-
-    */
-
-    //Encapsulation
 
 
 

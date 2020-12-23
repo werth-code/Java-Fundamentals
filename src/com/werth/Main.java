@@ -4,7 +4,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //CHECK OUT EACH CLASS FOR ADDITIONAL EXAMPLES AND COMMENTARY.
+        Main.fourPrinciplesOOP();
 
+    }
+
+    public static void fourPrinciplesOOP() {
         // We create a new FourPrinciplesOOP object and call speak() which is an abstract method implemented from the Abstraction Interface.
         System.out.println("---ABSTRACTION & POLYMORPHISM---");
         FourPrinciplesOOP fourPrinciplesOOP = new FourPrinciplesOOP("Matt");
@@ -27,4 +32,9 @@ public class Main {
         // Encapsulation - We made our name a Private variable. Using a getter method we can retrieve it.
         fourPrinciplesOOP2.getNames().forEach(System.out::println);
     }
+
+    public static void accessModifiers() {
+
+    }
+
 }
