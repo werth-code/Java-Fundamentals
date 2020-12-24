@@ -1,5 +1,7 @@
 package com.werth;
 
+import abstractclass.Forest;
+import abstractclass.Tree;
 import solid.*;
 
 public class Main {
@@ -11,6 +13,10 @@ public class Main {
         Main.accessModifiers();
 
         Main.solidPrinciples();
+
+        Main.overloadingVsOverriding();
+
+        Main.abstractClassVsInterface();
 
     }
 
@@ -60,13 +66,13 @@ public class Main {
         System.out.println("\n---SOLID PRINCIPLES---");
         System.out.println("SOLID helps us to design better more sustainable code, so others can build upon our work in the future \n");
 
-        System.out.println("---Single Responsibility---");
+        System.out.println("-Single Responsibility-");
         ChildrensBook book = new ChildrensBook("Snakes for Kids: A Junior Scientist's Guide to Venom, Scales, and Life in the Wild", "Take an amazing journey into the wonderful world of snakes―fangs, rattles, and scales!\n",
                  "Michael G. Starkey");
         System.out.println("- We Created A Class For Book, ChildrensBook and a static Read method. Here we separated read() from Book so that it can take any type of Book.");
         book.read();
 
-        System.out.println("---Open/Closed---");
+        System.out.println("-Open/Closed-");
         System.out.println("- Let's say we finished our Book class and have a working program. Now we want to add an 'hasEbook' variable.\n" +
                 "instead of adding to our existing class - we should make a new implementation that extends our book class.\nClasses should be open for extension but closed for modification");
 
@@ -74,19 +80,19 @@ public class Main {
         System.out.println("- Is this an Ebook? " + ebook.getHasEbook());
         ebook.read();
 
-        System.out.println("\n---Liscov Substitution---");
+        System.out.println("\n-Liscov Substitution-");
         System.out.println("If class A is a subtype of class B, then we should be able to replace B with A without disrupting the behavior of our program.");
         System.out.println("Here we can call the getAuthor() from Ebook and Childrens Book because they are subtypes of Book");
         System.out.println(book.getAuthor() + " --- " + ebook.getAuthor());
 
-        System.out.println("\n---Interface Segregation---");
+        System.out.println("\n-Interface Segregation-");
         System.out.println("We should make multiple small interfaces instead of one large interface. This way our classes only need to implement necessary methods");
         System.out.println("...Combining Multiple Smaller Interfaces...");
         System.out.println("'" + book.getBookName() + "'" +  " contains " + book.countWords() + " words.");
         System.out.println("Words Used " + book.wordUse().toString());
 
 
-        System.out.println("\n---Dependency Inversion---");
+        System.out.println("\n-Dependency Inversion-");
         System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use implements over extends. So, if you are building a payment\n" +
                 "system - and you need to communicate with an API - it would be best to have an interface which contains all of the functions needed to process payments." +
                 "kind of like a middle-man. This way, if you want to switch processors, all you have to do is update your interface.");
@@ -95,7 +101,35 @@ public class Main {
         Library library = new Library();
         library.addBook(book1);
         library.addBook(book2);
+        library.addBook(book);
         LibraryMethods.printLibrary(library);
     }
+
+    public static void overloadingVsOverriding() {
+        System.out.println("\n---@OVERRIDE VS OVERLOADING---");
+        System.out.println("- We overload a method by creating multiple versions that accept different parameters. We use this in the FourPrinciplesOOP Class to allow\n" +
+                "one constructor to create a default setting.");
+        System.out.println("@Override is what we use to adapt a method which we implement from an interface, so that it can work with our Class. We do this with toString in our Parent class.");
+    }
+
+    public static void abstractClassVsInterface() {
+        System.out.println("\n---ABSTRACT CLASS VS INTERFACE ---");
+        System.out.println("A class can only extend or inherit from one other class, however it can implement many different interfaces.");
+
+        Forest forest = new Forest();
+        Tree tree1 = new Tree(1, "Evergreen", true);
+        Tree tree2 = new Tree(3, "Apple", true);
+        forest.addSingleTree(tree1);
+        forest.addSingleTree(tree2);
+
+        System.out.println("-Here we create an abstract class TreeGroup, then extend that class through Forest. Forest now has access to all methods. Here are our tress in this Forest instance.\n");
+        forest.getTrees().forEach(tree -> System.out.println(tree.returnAllTreeInfo()));
+
+        System.out.println("-An interface only has the methods we create within it. If we use Interface Segregation (the I from SOLID), we can implement specific to what we need!\n" +
+                "-Here we create two trees using forest.createSetOfTrees() from our TreeActions Interface, implemented by Forest.\n");
+        forest.createSetOfTrees(2, 3, "Lemon", true).forEach(tree -> System.out.println(tree.returnAllTreeInfo()));
+
+    }
+
 
 }
