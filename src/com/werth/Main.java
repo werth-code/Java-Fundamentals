@@ -4,6 +4,8 @@ import abstractclass.Forest;
 import abstractclass.Tree;
 import solid.*;
 
+import java.util.Collection;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -17,6 +19,8 @@ public class Main {
         Main.overloadingVsOverriding();
 
         Main.abstractClassVsInterface();
+
+        Main.collectionVsCollections();
 
     }
 
@@ -128,8 +132,18 @@ public class Main {
         System.out.println("-An interface only has the methods we create within it. If we use Interface Segregation (the I from SOLID), we can implement specific to what we need!\n" +
                 "-Here we create two trees using forest.createSetOfTrees() from our TreeActions Interface, implemented by Forest.\n");
         forest.createSetOfTrees(2, 3, "Lemon", true).forEach(tree -> System.out.println(tree.returnAllTreeInfo()));
+        }
 
+    public static void collectionVsCollections() {
+        System.out.println("\n--- COLLECTION VS COLLECTIONS ---");
+        System.out.println("Collection is an interface containing the methods that we can use with collections such as .contains() on an ArrayList.");
+
+        Forest forest = new Forest();
+        Tree tree1 = new Tree(1, "Evergreen", true);
+        forest.addSingleTree(tree1);
+        System.out.println("-If we create a new ArrayList through our forest class -> Forest forest = new Forest() -> then forest.add(tree1)");
+        System.out.println("Then call forest.getTrees.contains(tree1) we get.. " + forest.getTrees().contains(tree1));
+        System.out.println("Here the ArrayList is part of the Java Collections Framework, and the methods .add() and .contains() are part of the Collection Interface.");
     }
-
 
 }
