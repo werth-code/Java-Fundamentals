@@ -1,7 +1,6 @@
 package com.werth;
 
-import solid.ChildrensBook;
-import solid.Ebook;
+import solid.*;
 
 public class Main {
 
@@ -88,8 +87,15 @@ public class Main {
 
 
         System.out.println("\n---Dependency Inversion---");
-        System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use implements over extends");
-
+        System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use implements over extends. So, if you are building a payment\n" +
+                "system - and you need to communicate with an API - it would be best to have an interface which contains all of the functions needed to process payments." +
+                "kind of like a middle-man. This way, if you want to switch processors, all you have to do is update your interface.");
+        Book book1 = new Book("Ready Player Two", "blha blah blah", "Ernest Cline");
+        Book book2 = new Book("A Promised Land", "A Promised Land is a memoir by Barack Obama, 44th President of the United States from 2009 to 2017.", "Barack Obama");
+        Library library = new Library();
+        library.addBook(book1);
+        library.addBook(book2);
+        LibraryMethods.printLibrary(library);
     }
 
 }
