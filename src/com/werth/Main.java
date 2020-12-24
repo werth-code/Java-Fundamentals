@@ -4,7 +4,9 @@ import abstractclass.Forest;
 import abstractclass.Tree;
 import solid.*;
 
-import java.util.Collection;
+import java.util.Map;
+import java.util.stream.Stream;
+
 
 public class Main {
 
@@ -21,6 +23,12 @@ public class Main {
         Main.abstractClassVsInterface();
 
         Main.collectionVsCollections();
+
+        Main.arrayStoreException();
+
+        Main.JvmJdkJre();
+
+        Main.whatIsHashMap();
 
     }
 
@@ -100,7 +108,7 @@ public class Main {
         System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use implements over extends. So, if you are building a payment\n" +
                 "system - and you need to communicate with an API - it would be best to have an interface which contains all of the functions needed to process payments." +
                 "kind of like a middle-man. This way, if you want to switch processors, all you have to do is update your interface.");
-        Book book1 = new Book("Ready Player Two", "blha blah blah", "Ernest Cline");
+        Book book1 = new Book("Ready Player Two", "blah blah blah", "Ernest Cline");
         Book book2 = new Book("A Promised Land", "A Promised Land is a memoir by Barack Obama, 44th President of the United States from 2009 to 2017.", "Barack Obama");
         Library library = new Library();
         library.addBook(book1);
@@ -145,5 +153,38 @@ public class Main {
         System.out.println("Then call forest.getTrees.contains(tree1) we get.. " + forest.getTrees().contains(tree1));
         System.out.println("Here the ArrayList is part of the Java Collections Framework, and the methods .add() and .contains() are part of the Collection Interface.");
     }
+
+    public static void arrayStoreException() {
+        System.out.println("\n--- ArrayStoreException ---");
+        System.out.println("An ArrayStoreException occurs when we try to pass in the wrong data type to an array, it is unchecked, meaning that it is caught at runtime.");
+        Forest forest = new Forest();
+        //forest.addSingleTree("string");
+    }
+
+    public static void JvmJdkJre() {
+        System.out.println("\n--- JVM - JDK - JRE ---");
+        System.out.println("-JVM is Java Virtual Machine, provides the environment for Java to run.");
+        System.out.println("-JDK is Java Development Kit, the tools to compile, document and package Java programs. A Software Dev Kit.");
+        System.out.println("-JRE is Java Runtime Environment, a subset of JDK to share ones runtime environment. Includes core classes.");
+    }
+
+    public static void whatIsHashMap() {
+        System.out.println("\n--- HASHMAP ---");
+        Book aBook = new Book("Java in a Nutshell", "With more than 700,000 copies sold to date, Java in a Nutshell from O'Reilly is clearly the favorite resource amongst the legion of developers and programmers using Java technology. And now, with the release of the 5.0 version of Java, O'Reilly has given the book that defined the \"in a Nutshell\" category another impressive tune-up.\n" +
+                "\n" +
+                "In this latest revision, readers will find Java in a Nutshell, 5th Edition, does more than just cover the extensive changes implicit in 5.0, the newest version of Java. It's undergone a complete makeover--in scope, size, and type of coverage--in order to more closely meet the needs of the modern Java programmer.\n", "David Flanagan");
+
+        System.out.println("-We create a new book with " + aBook.countWords() + " words.");
+        System.out.println("-We map each word as a KEY and how many times each word appears as our VALUE");
+        Map<String, Long> mapWords = aBook.wordUse();
+        System.out.println(mapWords);
+        System.out.println("-HashMaps have an average O(1) constant insertion/lookup time, but are unordered and require the KEY to retrieve VALUES.");
+        System.out.println("-However, if we do NOT know the key, it takes O(n) time to loop through each key and find our value.");
+
+        String mostFreqWord = mapWords.entrySet().stream().max((a, b) -> a.getValue() > b.getValue() ? 1 : -1).get().getKey();
+
+        System.out.println("Word which appears the most -> '" + mostFreqWord +"' appears " +mapWords.get(mostFreqWord) + " times.");
+    }
+
 
 }
