@@ -8,12 +8,13 @@ This way, we can create other types of books and all functionality will be integ
 @Override methods and alter code.
 */
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Book implements Readable, Words {
+public class Book implements Readable, Words, Comparable {
     String bookName;
     String bookText;
     String author;
@@ -70,5 +71,11 @@ public class Book implements Readable, Words {
                         Function.identity(),
                         Collectors.counting()
                 ));
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int compare = this.getBookName().compareTo(o.toString());
+        return compare;
     }
 }

@@ -30,6 +30,8 @@ public class Main {
 
         Main.whatIsHashMap();
 
+        Main.comparableComparator();
+
     }
 
     public static void fourPrinciplesOOP() {
@@ -177,14 +179,35 @@ public class Main {
         System.out.println("-We create a new book with " + aBook.countWords() + " words.");
         System.out.println("-We map each word as a KEY and how many times each word appears as our VALUE");
         Map<String, Long> mapWords = aBook.wordUse();
-        System.out.println(mapWords);
-        System.out.println("-HashMaps have an average O(1) constant insertion/lookup time, but are unordered and require the KEY to retrieve VALUES.");
+        System.out.println("\n" + mapWords);
+        System.out.println("\n-HashMaps have an average O(1) constant insertion/lookup time, but are unordered and require the KEY to retrieve VALUES.");
         System.out.println("-However, if we do NOT know the key, it takes O(n) time to loop through each key and find our value.");
 
         String mostFreqWord = mapWords.entrySet().stream().max((a, b) -> a.getValue() > b.getValue() ? 1 : -1).get().getKey();
 
-        System.out.println("Word which appears the most -> '" + mostFreqWord +"' appears " +mapWords.get(mostFreqWord) + " times.");
+        System.out.println("\nWord which appears the most -> '" + mostFreqWord + "' appears " + mapWords.get(mostFreqWord) + " times.");
+
+        System.out.println("HashMap-uhs are not sorted numerically, but by a hashing function which optimizes their efficiency.");
     }
 
+    public static void comparableComparator() {
+        System.out.println("\n--- COMPARABLE VS COMPARATOR ---");
+        System.out.println("Comparator is a comparison function. Comparable is an interface that has two methods compare() and equals()");
+        System.out.println("If a class implements Comparable it can sort by comparing two objects of that class.");
 
+        Book book1 = new Book("Ready Player Two", "blah blah blah", "Ernest Cline");
+        Book book2 = new Book("A Promised Land", "A Promised Land is a memoir by Barack Obama, 44th President of the United States from 2009 to 2017.", "Barack Obama");
+        Library library = new Library();
+        library.addBook(book1);
+        library.addBook(book2);
+        System.out.println("... Unsorted ...");
+        library.getBooks().forEach(book -> System.out.println(book.getBookName()));
+        library.getBooks().sort(Book::compareTo);
+        System.out.println("... Sorted using sort(Book::compareTo) ...");
+        library.getBooks().forEach(book -> System.out.println(book.getBookName()));
+        System.out.println("... Does Book at index 0 .equal() Book at index 1 in Library? " + library.getBooks().get(0).equals(library.getBooks().get(1)));
+
+    }
+
+    //// TODO: 12/24/20 JUST FINISHED HASHMAP Comparator is next...
 }
