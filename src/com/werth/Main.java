@@ -37,8 +37,6 @@ public class Main {
 
         classLoaders();
 
-        // exceptionKeywords(); // run last because it throws Exception.
-
         finalFinallyFinalize();
 
         dictionary();
@@ -70,6 +68,18 @@ public class Main {
         garbageCollection();
 
         generics();
+
+        JAR();
+
+        dynamicJava();
+
+        multithreaded();
+
+        whatIsProtected();
+
+        serialization();
+
+        //exceptionKeywords();
     }
 
     public static void fourPrinciplesOOP() {
@@ -478,9 +488,34 @@ public class Main {
         System.out.println("We use generics to give us incredible flexibility of type. It allows us to create more polymorphic and flexible code.");
     }
 
-    public static void a() {
-        System.out.println("\n--- CLASS VARIABLES ---");
-        System.out.println("");
+    public static void JAR() {
+        System.out.println("\n--- JAR ---");
+        System.out.println("JAR is Java Archive and it is a compressed file format which gathers many files into a single file.\n" +
+                "Generally JAR is used with Java Applets, and can compress audio, image and class files together.");
+    }
+
+    public static void dynamicJava() {
+        System.out.println("\n--- DYNAMIC JAVA ---");
+        System.out.println("Java is considered a dynamic language because it can be platform independent, through it's use of Byte code - which can be written on one platform and used on another.\nClass files are also loaded at runtime.");
+
+    }
+
+    public static void multithreaded() {
+        System.out.println("\n--- MULTITHREADED ---");
+        System.out.println("Different parts of the code can execute concurrently to maximize CPU.");
+        System.out.println("We can use multithreading by either extending the Thread class or implementing the Runnable interface.");
+    }
+
+    public static void whatIsProtected() {
+        System.out.println("\n--- PROTECTED ---");
+        System.out.println("'protected' is an access modifier - allows access by all classes within its package & by subclasses in other packages");
+    }
+
+    public static void serialization() {
+        System.out.println("\n--- SERIALIZATION ---");
+        System.out.println("Object Serialization is an object being created from incoming data. You can Serialize using ObjectInputStream and ObjectOutputStream");
+        System.out.println("To Serialize a class you must implement the Serializable interface and all fields must be serializable.");
+
     }
 
 }
