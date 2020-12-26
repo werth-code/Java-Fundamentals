@@ -18,6 +18,7 @@ public class Book implements Readable, Words, Comparable {
     String bookName;
     String bookText;
     String author;
+    Genre genre;
 
     public Book(String bookName, String bookText, String author) {
         this.bookName = bookName;
@@ -77,5 +78,13 @@ public class Book implements Readable, Words, Comparable {
     public int compareTo(Object o) {
         int compare = this.getBookName().compareTo(o.toString());
         return compare;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

@@ -2,8 +2,8 @@ package com.werth;
 
 import abstractclass.Forest;
 import abstractclass.Tree;
+import generics.GenericsExample;
 import solid.*;
-import solid.Readable;
 
 import java.io.IOException;
 import java.util.*;
@@ -12,8 +12,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-
-
 
         //CHECK OUT EACH CLASS FOR ADDITIONAL EXAMPLES AND COMMENTARY.
 
@@ -60,6 +58,18 @@ public class Main {
         whatIsAPI();
 
         whatIsAutoboxing();
+
+        classVariables();
+
+        classPath();
+
+        DOM();
+
+        enumeratedType();
+
+        garbageCollection();
+
+        generics();
     }
 
     public static void fourPrinciplesOOP() {
@@ -401,10 +411,76 @@ public class Main {
         System.out.println("When the compiler converts wrapper classes and primitive types automatically.");
 
         int num = 2;
-        Integer number = new Integer(num); //this cast/conversion becomes unnecessary.
+        Integer number = (Integer) num; //this cast/conversion becomes unnecessary.
         Integer number2 = num; //int is autoboxed into Integer by compiler.
 
         System.out.println("int num = " + num + "\nInteger number2 = num " + "\nnumber2 = " + number2 + " | " + number2.getClass());
+    }
+
+    public static void classVariables() {
+        System.out.println("\n--- CLASS VARIABLES ---");
+        System.out.println("Class Variables are static variables defined within a class. These values are set once and are the same for each instance of " +
+                "that class.\nFor example - we have a static String variable in Ebook that defines type = 'PDF'. Now all instances of Ebook will have type = 'PDF'.");
+        Ebook ebook = new Ebook("a", "b", "c");
+        System.out.println("ebook.getType() = " + ebook.getType());
+    }
+
+    public static void classPath() {
+        System.out.println("\n--- CLASSPATH ---");
+        System.out.println("Classpath is a variable which tells applications and JDK where user created classes are located.");
+        System.out.println("We use this with \nimport abstractclass.Forest;\n" +
+                "import abstractclass.Tree;\n" +
+                "import solid.*;");
+
+        System.out.println("Later when we reference the classes, JVM knows where to look for them.");
+    }
+
+    public static void DOM() {
+        System.out.println("\n--- DOM ---");
+        System.out.println("DOM is Document Object Model a programming interface which is language agnostic - through it we are able to manipulate HTML/XML.");
+    }
+
+    public static void enumeratedType() {
+        System.out.println("\n--- ENUM ---");
+        System.out.println("ENUM or Enumerated type is a fixed, array like set of values created as a type of class.");
+        System.out.println("Here we create an enum Genre. It's value can be stored in the genre variable on Book.");
+        Book book = new Book("a", "b", "c");
+        book.setGenre(Genre.SCIENCE_FICTION);
+        System.out.println("This Book's Genre is : " + book.getGenre());
+    }
+
+    public static void garbageCollection() {
+        System.out.println("\n--- GARBAGE COLLECTION ---");
+        System.out.println("Garbage collection happens automatically in Java, and is the freeing up of memory that will no longer be needed in the program.");
+    }
+
+    public static void generics() {
+        System.out.println("\n--- GENERICS ---");
+        System.out.println("A Generic in Java can be used to allow the usage of multiple types <T>.  At compile time\n" +
+                "Java will perform all needed checks - allowing us to use multiple types with our classes, interfaces or methods.");
+
+        System.out.println("\nSome of the checks Java will perform - Type Safety - Is a guarantee that correct types will be accepted.");
+        System.out.println("List<String> listStrings = new ArrayList<>();\n" +
+                        "listStrings.add(5); Will NOT WORK because 5 is not a String. In this case the compiler will warn you.\n" +
+                "but if we try listStrings('dog') it will be accepted.");
+
+
+        System.out.println("\n- Type Erasure - Is when the compiler removes all type parameters <T> and replaces with ordinary classes.\n" +
+                "To do this, Java may cast from one type to another or generate bridge methods.\n");
+
+        GenericsExample<Integer> integerTest = new GenericsExample<>(10);
+        GenericsExample<Double> doubleTest = new GenericsExample<>(10.0);
+        GenericsExample<String> stringTest = new GenericsExample<>("Hello");
+        System.out.println(integerTest + " - " + integerTest.getObj() + " - If we get our Integer value with getObj() then call .getClass() = " + integerTest.getObj().getClass());
+        System.out.println(doubleTest + " - " + doubleTest.getObj() + " - If we get our Double value with getObj() then call .getClass() = " + doubleTest.getObj().getClass());
+        System.out.println(stringTest + " - " + stringTest.getObj() + " - If we get our String value with getObj() then call .getClass() = " + stringTest.getObj().getClass());
+
+        System.out.println("We use generics to give us incredible flexibility of type. It allows us to create more polymorphic and flexible code.");
+    }
+
+    public static void a() {
+        System.out.println("\n--- CLASS VARIABLES ---");
+        System.out.println("");
     }
 
 }
