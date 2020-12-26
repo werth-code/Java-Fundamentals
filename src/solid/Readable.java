@@ -1,5 +1,5 @@
 package solid;
 
-public interface Readable {
-    public void read();
+public abstract interface Readable {
+    void read();
 }

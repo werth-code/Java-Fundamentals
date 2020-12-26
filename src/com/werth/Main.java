@@ -3,10 +3,10 @@ package com.werth;
 import abstractclass.Forest;
 import abstractclass.Tree;
 import solid.*;
+import solid.Readable;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Stream;
 
 
 public class Main {
@@ -56,6 +56,10 @@ public class Main {
         abstractClass();
 
         abstractMethods();
+
+        whatIsAPI();
+
+        whatIsAutoboxing();
     }
 
     public static void fourPrinciplesOOP() {
@@ -383,5 +387,24 @@ public class Main {
     public static void abstractMethods() {
         System.out.println("\n--- ABSTRACT METHODS ---");
         System.out.println("An Abstract Method is a method without implementation, which will be @override by the implementing class. Often used with interfaces.");
+        System.out.println("Our Readable Interface is an example of this.");
     }
+
+    public static void whatIsAPI() {
+        System.out.println("\n--- API ---");
+        System.out.println("Application Programming Interface API allows applications to communicate with each other. An example would be a weather API\n" +
+                "which allows another application to download it's data, parse it and show it in a different way - perhaps combining it with data from another API.");
+    }
+
+    public static void whatIsAutoboxing() {
+        System.out.println("\n--- Autoboxing ---");
+        System.out.println("When the compiler converts wrapper classes and primitive types automatically.");
+
+        int num = 2;
+        Integer number = new Integer(num); //this cast/conversion becomes unnecessary.
+        Integer number2 = num; //int is autoboxed into Integer by compiler.
+
+        System.out.println("int num = " + num + "\nInteger number2 = num " + "\nnumber2 = " + number2 + " | " + number2.getClass());
+    }
+
 }
