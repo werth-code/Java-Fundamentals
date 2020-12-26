@@ -46,6 +46,16 @@ public class Main {
         dictionary();
 
         whichCollectionIsFaster();
+
+        instanceVariables();
+
+        finalizeMethod();
+
+        accessModifiers();
+
+        abstractClass();
+
+        abstractMethods();
     }
 
     public static void fourPrinciplesOOP() {
@@ -290,7 +300,7 @@ public class Main {
 
     public static void whichCollectionIsFaster() {
         System.out.println("\n--- WHICH COLLECTION IS FASTER ---");
-        System.out.println("Each collection has a benefit and a trade off. For insertion/removal HashMap and HashSet offer O(1) constant time - faster than an ArrayList, but you\n" +
+        System.out.println("Each collection has a benefit and a trade off. For insertion/removal HashMaps offer O(1) constant time - faster than an ArrayList, but you\n" +
                 "must know the key or value to add/remove. ArrayLists have ordered access and random access - you can find first, last elements quickly. HashSets do not allow" +
                 "duplicate values.");
 
@@ -346,5 +356,32 @@ public class Main {
             fastestTime = totalTimeAL;
         }
         System.out.println(fastMethod + " is the fastest in this example at " + fastestTime);
+    }
+
+    public static void instanceVariables() {
+        System.out.println("\n---INSTANCE VARIABLES---");
+        System.out.println("An instance variable is declared within a class and created when a class is instantiated. As an example: ");
+        Ebook ebook = new Ebook("Wild World Of Oranges", "Oranges are incredible things..", "James Orangealot");
+        System.out.println("The variables for String author and String bookName " + ebook.getAuthor() + " & " + ebook.getBookName());
+        System.out.println("Are created as soon as we create a new instance of eBook.");
+    }
+
+    public static void finalizeMethod() {
+        System.out.println("\n---FINALIZE METHOD---");
+        System.out.println("The finalize() is invoked when the JVM no longer needs a particular instance. Once called the garbage collector runs.\n" +
+                "It's main purpose is to free up resources and speed up your program.");
+
+    }
+
+    public static void abstractClass() {
+        System.out.println("\n--- ABSTRACT CLASS ---");
+        System.out.println("An Abstract Class is an un-instantiatable class which can be extended and it's methods passed by the extending class.");
+        System.out.println("We used a treeGroup abstract class so that we could create different versions of treeGroups such as Forest & Orchard\n" +
+                "which all have the basic implementation of treeGroup.");
+    }
+
+    public static void abstractMethods() {
+        System.out.println("\n--- ABSTRACT METHODS ---");
+        System.out.println("An Abstract Method is a method without implementation, which will be @override by the implementing class. Often used with interfaces.");
     }
 }
