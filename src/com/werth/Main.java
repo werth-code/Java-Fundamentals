@@ -4,34 +4,48 @@ import abstractclass.Forest;
 import abstractclass.Tree;
 import solid.*;
 
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Stream;
 
 
 public class Main {
 
     public static void main(String[] args) {
+
+
+
         //CHECK OUT EACH CLASS FOR ADDITIONAL EXAMPLES AND COMMENTARY.
-        Main.fourPrinciplesOOP();
 
-        Main.accessModifiers();
+        fourPrinciplesOOP();
 
-        Main.solidPrinciples();
+        accessModifiers();
 
-        Main.overloadingVsOverriding();
+        solidPrinciples();
 
-        Main.abstractClassVsInterface();
+        overloadingVsOverriding();
 
-        Main.collectionVsCollections();
+        abstractClassVsInterface();
 
-        Main.arrayStoreException();
+        collectionVsCollections();
 
-        Main.JvmJdkJre();
+        arrayStoreException();
 
-        Main.whatIsHashMap();
+        JvmJdkJre();
 
-        Main.comparableComparator();
+        whatIsHashMap();
 
+        comparableComparator();
+
+        classLoaders();
+
+        // exceptionKeywords(); // run last because it throws Exception.
+
+        finalFinallyFinalize();
+
+        dictionary();
+
+        whichCollectionIsFaster();
     }
 
     public static void fourPrinciplesOOP() {
@@ -192,7 +206,7 @@ public class Main {
 
     public static void comparableComparator() {
         System.out.println("\n--- COMPARABLE VS COMPARATOR ---");
-        System.out.println("Comparator is a comparison function. Comparable is an interface that has two methods compare() and equals()");
+        System.out.println("Comparable is an interface with the compareTo() method. Comparator is an interface that has two methods compare() and equals()");
         System.out.println("If a class implements Comparable it can sort by comparing two objects of that class.");
 
         Book book1 = new Book("Ready Player Two", "blah blah blah", "Ernest Cline");
@@ -209,5 +223,128 @@ public class Main {
 
     }
 
-    //// TODO: 12/24/20 JUST FINISHED HASHMAP Comparator is next...
+
+    public static void classLoaders() { //// TODO: 12/26/20 still incomprehensible.
+        System.out.println("\n--- CLASS LOADERS ---");
+        System.out.println("Class loaders load Java classes into memory during runtime to the JVM - ");
+
+        System.out.println("Classloader of Main: "
+                + Main.class.getClassLoader());
+    }
+
+    public static void func() {
+        int zero = -1;
+        try {
+            if (zero < 0) {
+                throw new IOException();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            System.out.println("We used TRY, our code failed so we THREW an exception." +
+                    "\nWe used CATCH to catch the exception and now we use FINALLY to sout this message.");
+        }
+    }
+
+    public static void exceptionKeywords() {
+        System.out.println("\n--- EXCEPTION KEYWORDS ---");
+        System.out.println("Try, Catch, Finally, Throw, Throws");
+        System.out.println("A checked exception like IOException can be thrown from the method body but must be handled later. In this case we use 'throws TypeOfException' before the method body" +
+                "\nand 'throw new TypeOfException() inside the method. THROWS is saying this method will throw an exception. THROW is when when we throw new TypeOfException()\n");
+        System.out.println("When we want to handle the exception we use TRY, CATCH & FINALLY inside the method.");
+        func();
+    }
+
+    public static void finalFinallyFinalize() {
+        System.out.println("\n--- FINAL, FINALLY, FINALIZE ---");
+        System.out.println("We use the keyword final to declare a class, method, variable unchangeable. Once it is set - it cannot be changed.\n" +
+                "Finally is used to do one last thing after we throw an exception - allows our code to fail gracefully by wrapping things up and not immediately crashing.\n" +
+                "Finalize helps us with garbage collection in Java.");
+
+        final int one = 1;
+        //one = 2;
+        System.out.println(one + " Is final and cannot be changed to 2.");
+    }
+
+    public static void dictionary() {
+        System.out.println("\n--- DICTIONARY ---");
+        System.out.println("Dictionary is an abstract class used with Map types to add key, value pairs.");
+        System.out.println("It has the methods put(), elements(), get(), isEmpty(), keys(), remove() and size().");
+
+        Book aBook = new Book("Java in a Nutshell", "With more than 700,000 copies sold to date, Java in a Nutshell from O'Reilly is clearly the favorite resource amongst the legion of developers and programmers using Java technology. And now, with the release of the 5.0 version of Java, O'Reilly has given the book that defined the \"in a Nutshell\" category another impressive tune-up.\n" +
+                "\n" +
+                "In this latest revision, readers will find Java in a Nutshell, 5th Edition, does more than just cover the extensive changes implicit in 5.0, the newest version of Java. It's undergone a complete makeover--in scope, size, and type of coverage--in order to more closely meet the needs of the modern Java programmer.\n", "David Flanagan");
+
+        Map<String, Long> map = aBook.wordUse();
+        System.out.println("- Here we bring back our wordUse map.");
+        System.out.println("map.get(0): " + map.get("programmers"));
+        System.out.println("map.put('Thingamajig', 2L)): " + map.put("Thingamajig", 2L));
+        System.out.println("map.isEmpty()): " + map.isEmpty());
+        System.out.println("map.keySet(): " + map.keySet());
+        System.out.println("map.remove('Thingamajig'): " + map.remove("Thingamajig"));
+        System.out.println("map.size(): " + map.size());
+    }
+
+
+    public static void whichCollectionIsFaster() {
+        System.out.println("\n--- WHICH COLLECTION IS FASTER ---");
+        System.out.println("Each collection has a benefit and a trade off. For insertion/removal HashMap and HashSet offer O(1) constant time - faster than an ArrayList, but you\n" +
+                "must know the key or value to add/remove. ArrayLists have ordered access and random access - you can find first, last elements quickly. HashSets do not allow" +
+                "duplicate values.");
+
+        List<Integer> intList = new ArrayList<>();
+        for(int i = 0; i < 100000; i++) {
+            intList.add(i);
+        }
+
+        HashMap<Integer, Integer> intMap = new HashMap<>();
+        for(int i = 0; i < 100000; i++) {
+            intMap.put(i, i);
+        }
+
+        HashSet<Integer> intHashSet = new HashSet<>();
+        for(int i = 0; i < 100000; i++) {
+            intHashSet.add(i);
+        }
+
+        final long startTimeAL = System.nanoTime();
+        intList.indexOf(50000);
+        final long endTimeAL = System.nanoTime();
+
+        long totalTimeAL = endTimeAL- startTimeAL;
+
+        final long startTimeHS = System.nanoTime();
+        intHashSet.contains(50000);
+        final long endTimeHS = System.nanoTime();
+
+        long totalTimeHS = endTimeHS - startTimeHS;
+
+        final long startTimeHM = System.nanoTime();
+        intMap.get(50000);
+        final long endTimeHM = System.nanoTime();
+
+        long totalTimeHM = endTimeHM - startTimeHM;
+
+        System.out.println("Total Time To Find Mid-Element indexOf() ArrayList 100000 Elements: " + totalTimeAL);
+        System.out.println("Total Time To .get(50000) From HashMap Of 100000 Elements: " + totalTimeHM);
+        System.out.println("Total Time To Check For Inclusion In HashSet .contains(50000) " + totalTimeHS);
+
+        String fastMethod;
+        long fastestTime;
+        if(totalTimeHM < totalTimeHS && totalTimeHM < totalTimeAL) {
+            fastMethod = "HashMap";
+            fastestTime = totalTimeHM;
+        }
+        else if(totalTimeHS < totalTimeHM && totalTimeHS < totalTimeAL) {
+            fastMethod = "HashSet";
+            fastestTime = totalTimeHS;
+        }
+        else {
+            fastMethod = "ArrayList";
+            fastestTime = totalTimeAL;
+        }
+        System.out.println(fastMethod + " is the fastest in this example at " + fastestTime);
+    }
 }
