@@ -15,6 +15,7 @@ public class Main {
 
         //CHECK OUT EACH CLASS FOR ADDITIONAL EXAMPLES AND COMMENTARY.
 
+
         fourPrinciplesOOP();
 
         accessModifiers();
@@ -85,6 +86,8 @@ public class Main {
     public static void fourPrinciplesOOP() {
         // We create a new FourPrinciplesOOP object and call speak() which is an abstract method implemented from the Abstraction Interface.
         System.out.println("---ABSTRACTION & POLYMORPHISM---");
+        System.out.println("We use a method overload on the FourPrinciplesOOP class to show how we can use polymorphism to make our code more dynamic.");
+        System.out.println("Our class is able to abstract our code so that we are able to create instances easily.");
         FourPrinciplesOOP fourPrinciplesOOP = new FourPrinciplesOOP("Matt");
         fourPrinciplesOOP.speak();
 
@@ -93,7 +96,7 @@ public class Main {
         fourPrinciplesOOP2.speak();
 
         System.out.println("\n---INHERITANCE---");
-        // Inheritance - here our child class inherits the toString function that we have @Override in our Parent class.
+        System.out.println("Inheritance - here our child class inherits the toString function that we have @Override in our Parent class.");
         Parent parent = new Parent("Joanna");
         System.out.println(parent.toString());
 
@@ -136,7 +139,7 @@ public class Main {
 
         System.out.println("-Open/Closed-");
         System.out.println("- Let's say we finished our Book class and have a working program. Now we want to add an 'hasEbook' variable.\n" +
-                "instead of adding to our existing class - we should make a new implementation that extends our book class.\nClasses should be open for extension but closed for modification");
+                "instead of adding to our existing class - we should make a new implementation instead of altering our working code.\nClasses should be open for extension but closed for modification");
 
         Ebook ebook = new Ebook("Hello World", "A book about my journey through the world.", "Amanda Michaels");
         System.out.println("- Is this an Ebook? " + ebook.getHasEbook());
@@ -146,6 +149,9 @@ public class Main {
         System.out.println("If class A is a subtype of class B, then we should be able to replace B with A without disrupting the behavior of our program.");
         System.out.println("Here we can call the getAuthor() from Ebook and Childrens Book because they are subtypes of Book");
         System.out.println(book.getAuthor() + " --- " + ebook.getAuthor());
+        System.out.println("You have a super that creates a method.. (view this method as a contract). A sub class extends the super and implements that method. \n" +
+                        "Any @Overrides on that method should not fundamentally change the output. So you should be able to pass in to the @Override method -  \n" +
+                        "an object made from the super without issue.");
 
         System.out.println("\n-Interface Segregation-");
         System.out.println("We should make multiple small interfaces instead of one large interface. This way our classes only need to implement necessary methods");
@@ -155,16 +161,13 @@ public class Main {
 
 
         System.out.println("\n-Dependency Inversion-");
-        System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use implements over extends. So, if you are building a payment\n" +
-                "system - and you need to communicate with an API - it would be best to have an interface which contains all of the functions needed to process payments." +
-                "kind of like a middle-man. This way, if you want to switch processors, all you have to do is update your interface.");
-        Book book1 = new Book("Ready Player Two", "blah blah blah", "Ernest Cline");
-        Book book2 = new Book("A Promised Land", "A Promised Land is a memoir by Barack Obama, 44th President of the United States from 2009 to 2017.", "Barack Obama");
-        Library library = new Library();
-        library.addBook(book1);
-        library.addBook(book2);
-        library.addBook(book);
-        LibraryMethods.printLibrary(library);
+        System.out.println("Depend on abstraction. Instead of using concrete implementations, whenever possible use an intermediary.");
+        System.out.println("If you are building an API that needs to connect to a bank, you would want to create an interface with your methods " +
+                "in stead of hard coding to the bank. That way, if you wanted to switch banks - it would be simple.");
+
+        System.out.println("An example would be --> List<String> strings = new ArrayList<>()");
+        System.out.println("This way we can always change the type of List later like this --> = new LinkedList<>()");
+
     }
 
     public static void overloadingVsOverriding() {

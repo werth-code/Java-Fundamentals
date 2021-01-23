@@ -2,7 +2,7 @@ package abstractclass;
 
 import java.util.ArrayList;
 
-public interface TreeActions {
+public interface CreateTrees {
 
     default ArrayList<Tree> createSetOfTrees(Integer numberOfTrees, Integer treeAge, String treeType, Boolean inGoodHealth) {
         if (numberOfTrees <= 0) return null;

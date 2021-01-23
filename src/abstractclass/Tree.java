@@ -7,6 +7,7 @@ public class Tree {
     private Integer treeAge;
     private String treeType;
     private Boolean treeInGoodHealth;
+    private CreateTrees createTrees;
 
     public Tree(Integer treeAge, String treeType, Boolean treeInGoodHealth) {
         this.treeID = setSingleTreeID();
@@ -14,6 +15,7 @@ public class Tree {
         this.treeType = treeType;
         this.treeType = treeType;
         this.treeInGoodHealth = treeInGoodHealth;
+        this.createTrees = new Forest();
     }
 
     public String returnAllTreeInfo() { //Method should accept an ID number and return the resulting information.
@@ -33,7 +35,6 @@ public class Tree {
         return treeAge;
     }
 
-
     public Boolean getTreeInGoodHealth() {
         return treeInGoodHealth;
     }
@@ -42,4 +43,7 @@ public class Tree {
         return treeType;
     }
 
+    public CreateTrees getTreeActions() {
+        return createTrees;
+    }
 }
